@@ -11,7 +11,6 @@ int main()
 
 void imagen(){//matriz del usuario
     int matrizUsuario[8][8]={};
-    int (*pMatrizPuntero)[8][8]=&matrizUsuario;
 
     cout<<"ingrese un 1 para encendido y 0 para apagado"<<endl;
     for(int i=0;i<8;i++){
@@ -19,13 +18,14 @@ void imagen(){//matriz del usuario
             int a=0;
             cout << "ingrese estado del led en la posici0on ["<<i+1<<"]["<<j+1<<"]: "<<endl;
             cin >>a;
-            //&(*(pMatrizPuntero+j))+i=a;
+            *(*(matrizUsuario+j)+i) =a;
             //matrizUsuario[i][j]=a;
         }
     }
     for(int x=0;x<8;x++){
         for(int z=0; z<8;z++){
-            cout<< matrizUsuario[x][z];
+            cout << *(*(matrizUsuario+z)+x)<<" ";
+            //cout << matrizUsuario[x][z]<< " ";
         }
         cout<<endl;
     }
