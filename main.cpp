@@ -2,12 +2,35 @@
 
 using namespace std;
 void imagen();
+void publik();
 int main()
 {
     cout << "Hello World!" << endl;
-    imagen();
+    publik();
     return 0;
 }
+
+void publik(){
+    int opcion;
+    cout <<"ingrese el numero de la opcion"<<endl;
+    cout << "1- verificar funcionamiento de leds."<<endl;
+    cout << "2- ingresar imagen personalizada."<<endl;
+    cout << "3- patrones de ejemplo"<<endl;
+    cin >>opcion;
+    switch (opcion) {
+    case 1:
+        break;
+    case 2:
+        imagen();
+    case 3:
+        break;
+
+    default:
+        break;
+    }
+
+}
+
 
 void imagen(){//matriz del usuario
     int matrizUsuario[8][8]={};
