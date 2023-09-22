@@ -3,9 +3,13 @@
 using namespace std;
 void imagen();
 void publik();
+void patrones(int matriz[8][8]);
+int matrizPatrones[8][8]={};
 int main()
 {
-    cout << "Hello World!" << endl;
+
+
+    cout << matrizPatrones<< endl;
     publik();
     return 0;
 }
@@ -23,14 +27,12 @@ void publik(){
     case 2:
         imagen();
     case 3:
-        break;
-
+        patrones(matrizPatrones);
     default:
         break;
     }
 
 }
-
 
 void imagen(){//matriz del usuario
     int matrizUsuario[8][8]={};
@@ -52,4 +54,8 @@ void imagen(){//matriz del usuario
         }
         cout<<endl;
     }
+}
+
+void patrones(int matriz[8][8]){
+    cout << matriz;
 }
