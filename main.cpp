@@ -4,7 +4,7 @@ using namespace std;
 void imagen();
 void publik();
 void patrones(int matriz[8][8]);
-
+void limpiarMatriz(int matriz[8][8]);
 void imprimirMatriz(int matriz[8][8]);
 int main()
 {
@@ -63,18 +63,36 @@ void patrones(int matriz[8][8]){
     for (int i = 0; i < 8; ++i) {
         matriz[i][i]=1;
         matriz[i][7-i]=1;
-
     }
 
     imprimirMatriz(matriz);
+
+    limpiarMatriz(matriz);
+
+//    patron 3
+
+
+
+
+    imprimirMatriz(matriz);
+
+
 }
 
 void imprimirMatriz(int matriz[8][8]){
-    cout << matriz<< endl;
     for(int x=0;x<8;x++){
         for(int z=0; z<8;z++){
             cout << *(*(matriz+z)+x)<<" ";
         }
         cout<<endl;
+    }
+}
+
+void limpiarMatriz(int matriz[8][8]){
+    cout<<endl;
+    for(int x=0;x<8;x++){
+        for(int z=0; z<8;z++){
+            *(*(matriz+z)+x)=0;
+        }
     }
 }
