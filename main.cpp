@@ -57,5 +57,19 @@ void imagen(){//matriz del usuario
 }
 
 void patrones(int matriz[8][8]){
-    cout << matriz;
+    cout << matriz<<endl;
+//    patron 2
+    for (int i = 0; i < 8; ++i) {
+        matriz[i][i]=1;
+        matriz[i][-i]=1;
+    }
+    matriz[0][7]=1;
+
+
+    for(int x=0;x<8;x++){
+        for(int z=0; z<8;z++){
+            cout << *(*(matriz+z)+x)<<" ";
+        }
+        cout<<endl;
+    }
 }
