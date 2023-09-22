@@ -4,18 +4,22 @@ using namespace std;
 void imagen();
 void publik();
 void patrones(int matriz[8][8]);
-int matrizPatrones[8][8]={};
+
+void imprimirMatriz(int matriz[8][8]);
 int main()
 {
 
 
-    cout << matrizPatrones<< endl;
+
     publik();
     return 0;
 }
 
 void publik(){
+    int matrizPatrones[8][8]={};
+    cout << matrizPatrones<< endl;
     int opcion;
+    matrizPatrones[0][7]=1;
     cout <<"ingrese el numero de la opcion"<<endl;
     cout << "1- verificar funcionamiento de leds."<<endl;
     cout << "2- ingresar imagen personalizada."<<endl;
@@ -57,15 +61,19 @@ void imagen(){//matriz del usuario
 }
 
 void patrones(int matriz[8][8]){
-    cout << matriz<<endl;
+    cout << matriz <<endl;
 //    patron 2
     for (int i = 0; i < 8; ++i) {
         matriz[i][i]=1;
         matriz[i][-i]=1;
+
     }
-    matriz[0][7]=1;
 
+    imprimirMatriz(matriz);
+}
 
+void imprimirMatriz(int matriz[8][8]){
+    cout << matriz<< endl;
     for(int x=0;x<8;x++){
         for(int z=0; z<8;z++){
             cout << *(*(matriz+z)+x)<<" ";
