@@ -9,8 +9,6 @@ void imprimirMatriz(int matriz[8][8]);
 int main()
 {
 
-
-
     publik();
     return 0;
 }
@@ -19,7 +17,6 @@ void publik(){
     int matrizPatrones[8][8]={};
     cout << matrizPatrones<< endl;
     int opcion;
-    matrizPatrones[0][7]=1;
     cout <<"ingrese el numero de la opcion"<<endl;
     cout << "1- verificar funcionamiento de leds."<<endl;
     cout << "2- ingresar imagen personalizada."<<endl;
@@ -65,7 +62,7 @@ void patrones(int matriz[8][8]){
 //    patron 2
     for (int i = 0; i < 8; ++i) {
         matriz[i][i]=1;
-        matriz[i][-i]=1;
+        matriz[i][7-i]=1;
 
     }
 
