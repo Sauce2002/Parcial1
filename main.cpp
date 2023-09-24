@@ -6,6 +6,7 @@ void publik();
 void patrones(int matriz[8][8]);
 void limpiarMatriz(int matriz[8][8]);
 void imprimirMatriz(int matriz[8][8]);
+void prueba(int** p);
 int main()
 {
 
@@ -14,7 +15,17 @@ int main()
 }
 
 void publik(){
+
     int matrizPatrones[8][8]={};
+    int **pMatriz;
+    pMatriz = new int* [8];
+    for (int i = 0; i <8; i++) {
+        pMatriz[i] = new int[8];
+    }
+
+    cout << pMatriz<<endl;
+    prueba(pMatriz);
+
     cout << matrizPatrones<< endl;
     int opcion;
     cout <<"ingrese el numero de la opcion"<<endl;
@@ -61,8 +72,10 @@ void patrones(int matriz[8][8]){
     cout << matriz <<endl;
 //    patron 2
     for (int i = 0; i < 8; ++i) {
-        matriz[i][i]=1;
-        matriz[i][7-i]=1;
+        //matriz[i][i]=1;
+        *(*(matriz+i)+i)=1;
+        //matriz[i][7-i]=1;
+        *(*(matriz+(7-i))+i)=1;
     }
 
     imprimirMatriz(matriz);
@@ -95,4 +108,12 @@ void limpiarMatriz(int matriz[8][8]){
             *(*(matriz+z)+x)=0;
         }
     }
+}
+
+void prueba(int** p){
+    cout <<p<<endl;
+    for (int i = 0; i < 8; i++) {
+        delete[] p[i];
+    }
+    delete[] p;
 }
