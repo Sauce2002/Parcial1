@@ -1,12 +1,12 @@
 #include <iostream>
 
 using namespace std;
-void imagen();
+void imagen(int** matriz);
 void publik();
-void patrones(int matriz[8][8]);
-void limpiarMatriz(int matriz[8][8]);
-void imprimirMatriz(int matriz[8][8]);
-void prueba(int** p);
+void patrones(int** matriz);
+void limpiarMatriz(int** matriz);
+void imprimirMatriz(int** matriz);
+void eliminarMatriz(int** p);
 int main()
 {
 
@@ -15,18 +15,14 @@ int main()
 }
 
 void publik(){
-
-    int matrizPatrones[8][8]={};
+//    inicializamos un puntero de una matriz
     int **pMatriz;
     pMatriz = new int* [8];
     for (int i = 0; i <8; i++) {
         pMatriz[i] = new int[8];
     }
-
+//creamos el menu del usuario
     cout << pMatriz<<endl;
-    prueba(pMatriz);
-
-    cout << matrizPatrones<< endl;
     int opcion;
     cout <<"ingrese el numero de la opcion"<<endl;
     cout << "1- verificar funcionamiento de leds."<<endl;
@@ -37,39 +33,35 @@ void publik(){
     case 1:
         break;
     case 2:
-        imagen();
+        imagen(pMatriz);
     case 3:
-        patrones(matrizPatrones);
+        patrones(pMatriz);
     default:
         break;
     }
 
 }
 
-void imagen(){//matriz del usuario
-    int matrizUsuario[8][8]={};
-
+void imagen(int** matriz){//matriz del usuario
     cout<<"ingrese un 1 para encendido y 0 para apagado"<<endl;
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             int a=0;
             cout << "ingrese estado del led en la posici0on ["<<i+1<<"]["<<j+1<<"]: "<<endl;
             cin >>a;
-            *(*(matrizUsuario+j)+i) =a;
+            *(*(matriz+j)+i) =a;
             //matrizUsuario[i][j]=a;
         }
     }
-    for(int x=0;x<8;x++){
-        for(int z=0; z<8;z++){
-            cout << *(*(matrizUsuario+z)+x)<<" ";
-            //cout << matrizUsuario[x][z]<< " ";
-        }
+    imprimirMatriz(matriz);
+    eliminarMatriz(matriz);
         cout<<endl;
-    }
+
 }
 
-void patrones(int matriz[8][8]){
+void patrones(int** matriz){
     cout << matriz <<endl;
+    limpiarMatriz(matriz);
 //    patron 2
     for (int i = 0; i < 8; ++i) {
         //matriz[i][i]=1;
@@ -77,7 +69,6 @@ void patrones(int matriz[8][8]){
         //matriz[i][7-i]=1;
         *(*(matriz+(7-i))+i)=1;
     }
-
     imprimirMatriz(matriz);
 
     limpiarMatriz(matriz);
@@ -85,14 +76,12 @@ void patrones(int matriz[8][8]){
 //    patron 3
 
 
-
-
     imprimirMatriz(matriz);
-
+    eliminarMatriz(matriz);
 
 }
 
-void imprimirMatriz(int matriz[8][8]){
+void imprimirMatriz(int** matriz){
     for(int x=0;x<8;x++){
         for(int z=0; z<8;z++){
             cout << *(*(matriz+z)+x)<<" ";
@@ -101,7 +90,7 @@ void imprimirMatriz(int matriz[8][8]){
     }
 }
 
-void limpiarMatriz(int matriz[8][8]){
+void limpiarMatriz(int** matriz){
     cout<<endl;
     for(int x=0;x<8;x++){
         for(int z=0; z<8;z++){
@@ -110,10 +99,10 @@ void limpiarMatriz(int matriz[8][8]){
     }
 }
 
-void prueba(int** p){
-    cout <<p<<endl;
+void eliminarMatriz(int** matriz){
+    cout <<matriz<<endl;
     for (int i = 0; i < 8; i++) {
-        delete[] p[i];
+        delete[] matriz[i];
     }
-    delete[] p;
+    delete[] matriz;
 }
