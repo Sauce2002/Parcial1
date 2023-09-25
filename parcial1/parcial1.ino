@@ -35,7 +35,7 @@ void publik(){
     }
  // ponemos todas las posiciones de la funcion en 0
     limpiarMatriz(pMatriz);
-    
+    prenderMatriz(pMatriz);
 //creamos el menu del usuario
     
     int opcion=0;
@@ -62,12 +62,19 @@ void publik(){
 	delay(10);
 }
 void imagen(int** matriz){//matriz del usuario
-  	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
+  	int *secuencias = new int;
   	int *tiempo = new int;
+  	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
+  	
   	while (!Serial.available()){}
   	*tiempo=Serial.parseInt();
-  	Serial.print(*tiempo);
+  	Serial.println(*tiempo);
   
+  	Serial.print("ingrese numero de secuencias: ");      
+  	while (!Serial.available()){};
+  	*secuencias=Serial.parseInt();
+  	Serial.println(*secuencias);
+  	
   	limpiarMatriz(matriz);//por si el usuario ingresa menos de 8 numeros
     Serial.println("ingrese un 1 para encendido y 0 para apagado");
   	Serial.println("ingrese las filas de la siguiente forma, ejemplo(10110110)");
@@ -89,12 +96,17 @@ void imagen(int** matriz){//matriz del usuario
         }
       	Serial.println("");
     }
+  for(int i=0;i < *secuencias;i++){
     imprimirMatriz(matriz);
-  	prenderMatriz(matriz);
-    eliminarMatriz(matriz);
+  	encenderIntervalo(matriz,tiempo);   
     Serial.println("");
+    delay(*tiempo*1000);
+  }  
+  eliminarMatriz(matriz);
   delete tiempo;
   tiempo=nullptr;
+  delete secuencias;
+  secuencias=nullptr;
 
 }
 void patrones(int** matriz){
@@ -105,7 +117,7 @@ void patrones(int** matriz){
   	while (!Serial.available()){};
   	*tiempo=Serial.parseInt();
   	Serial.println(*tiempo);
-  
+  	
     limpiarMatriz(matriz);
 //    patron 2
     for (int i = 0; i < 8; ++i) {        
@@ -114,10 +126,10 @@ void patrones(int** matriz){
     }
     encenderIntervalo(matriz, tiempo);
 	imprimirMatriz(matriz);
-    limpiarMatriz(matriz);
+    limpiarMatriz(matriz); 	
 	delay(*tiempo*1000);
 //    patron 3
-
+	
     
     eliminarMatriz(matriz);
 	delete tiempo;
