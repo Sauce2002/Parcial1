@@ -105,4 +105,5 @@ void eliminarMatriz(int** matriz){
         delete[] matriz[i];
     }
     delete[] matriz;
+    matriz = nullptr;
 }

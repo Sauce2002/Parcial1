@@ -35,9 +35,9 @@ void publik(){
     Serial.println("1- verificar funcionamiento de leds.");
     Serial.println("2- ingresar imagen personalizada.");
     Serial.println("3- patrones de ejemplo");
-    opcion = Serial.read();
-  	Serial.println(opcion);
-  	delay(1000);
+  	while (!Serial.available()){}
+    opcion = Serial.parseInt();  	
+  	
     switch (opcion) {
     case 1:
         break;
@@ -54,19 +54,24 @@ void publik(){
 }
 void imagen(int** matriz){//matriz del usuario
     Serial.println("ingrese un 1 para encendido y 0 para apagado");
+  	Serial.println("ingrese las filas de la siguiente forma, ejemplo(10110110)");
     for(int i=0;i<8;i++){
+      	String a ="";
+        Serial.print("ingrese la fila [");
+        Serial.print(i+1);
+      	Serial.print("]: ");
+      	while (!Serial.available()){}          
+        a = Serial.readString();
+      
+      
         for(int j=0;j<8;j++){
-            int a=0;
-          	Serial.print("ingrese estado del led en la posicion [");
-          	Serial.print(i+1);
-          	Serial.print("][");
-          	Serial.print(j+1);
-          	Serial.println("]: ");
-            a = Serial.read();
-            
-            *(*(matriz+j)+i) = a;
-            //matrizUsuario[i][j]=a;
+          Serial.print(a[j]);//si el usuario pone mas de 8 numeros
+            int b = 0;		//se imprimiran y tomaran solo los primeros 8
+          	b = a[j]-48;
+            *(*(matriz+j)+i) = b;
+            //matrizUsuario[i][j]=b;
         }
+      	Serial.println("");
     }
     imprimirMatriz(matriz);
     eliminarMatriz(matriz);
@@ -118,4 +123,5 @@ void eliminarMatriz(int** matriz){
         delete[] matriz[i];
     }
     delete[] matriz;
+    matriz = nullptr;
 }
