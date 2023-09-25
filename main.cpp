@@ -27,7 +27,7 @@ void publik(){
     cout <<"ingrese el numero de la opcion"<<endl;
     cout << "1- verificar funcionamiento de leds."<<endl;
     cout << "2- ingresar imagen personalizada."<<endl;
-    cout << "3- patrones de ejemplo"<<endl;
+    cout << "3- patrones de ejemplo."<<endl;
     cin >>opcion;
     switch (opcion) {
     case 1:
