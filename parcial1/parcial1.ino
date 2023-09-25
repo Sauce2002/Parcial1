@@ -63,6 +63,12 @@ void publik(){
 	delay(10);
 }
 void imagen(int** matriz){//matriz del usuario
+  	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
+  	int *tiempo = new int;
+  	while (!Serial.available()){}
+  	*tiempo=Serial.parseInt();
+  	Serial.print(*tiempo);
+  
   	limpiarMatriz(matriz);//por si el usuario ingresa menos de 8 numeros
     Serial.println("ingrese un 1 para encendido y 0 para apagado");
   	Serial.println("ingrese las filas de la siguiente forma, ejemplo(10110110)");
@@ -88,6 +94,8 @@ void imagen(int** matriz){//matriz del usuario
   	prenderMatriz(matriz);
     eliminarMatriz(matriz);
     Serial.println("");
+  delete tiempo;
+  tiempo=nullptr;
 
 }
 void patrones(int** matriz){
@@ -139,34 +147,39 @@ void eliminarMatriz(int** matriz){
 }
 
 void verificarMatriz(int** matriz){
-  	int secuencias;
-  	int tiempo;
+  	int *secuencias = new int;
+  	int *tiempo = new int;
   
   	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
   while (!Serial.available()){};
-  	tiempo=Serial.parseInt();
-  	Serial.println(tiempo);
+  	*tiempo=Serial.parseInt();
+  	Serial.println(*tiempo);
   
   	Serial.print("ingrese numero de secuencias: ");      
   while (!Serial.available()){};
-  	secuencias=Serial.parseInt();
-  	Serial.println(secuencias);
+  	*secuencias=Serial.parseInt();
+  	Serial.println(*secuencias);
   
-  for(int i=0;i <secuencias;i++){
+  for(int i=0;i <*secuencias;i++){
     
   	digitalWrite(latchPin,LOW);
   	shiftOut(data,clockPin,LSBFIRST,255);
   	digitalWrite(latchPin,HIGH);
-    delay(tiempo*1000);
+    delay(*tiempo*1000);
     	  	
 	digitalWrite(latchPin,LOW);
   	shiftOut(data,clockPin,LSBFIRST,0);
   	digitalWrite(latchPin,HIGH);
-    delay(tiempo*1000);  	
+    delay(*tiempo*1000);  	
   }
   	digitalWrite(latchPin,LOW);
   	shiftOut(data,clockPin,LSBFIRST,0);
   	digitalWrite(latchPin,HIGH);
+  delete tiempo;
+  delete secuencias;
+  tiempo = nullptr;
+  secuencias=nullptr;
+  
 }
 
 void prenderMatriz(int** matriz){
