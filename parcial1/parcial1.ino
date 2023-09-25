@@ -1,21 +1,30 @@
 // C++ code
 //
+
+int clockPin = 4;
+int data = 2;
+int latchPin = 3;
+
+void prenderMatriz(int** matriz);
 void imagen(int** matriz);
 void publik();
 void patrones(int** matriz);
 void limpiarMatriz(int** matriz);
 void imprimirMatriz(int** matriz);
-void eliminarMatriz(int** p);
-
+void eliminarMatriz(int** matriz);
+void eliminarMatriz(int** matriz);
 void setup()
 {
   Serial.begin(9600);
+  pinMode(clockPin,OUTPUT);
+  pinMode(data,OUTPUT);  
+  pinMode(latchPin,OUTPUT);
 }
 
 void loop()
 {
   publik();
-  delay(1000);
+  
 }
 void publik(){
 //    inicializamos un puntero de una matriz
@@ -40,6 +49,7 @@ void publik(){
   	
     switch (opcion) {
     case 1:
+      verificarMatriz(pMatriz);
         break;
     case 2:
         imagen(pMatriz);
@@ -75,6 +85,7 @@ void imagen(int** matriz){//matriz del usuario
       	Serial.println("");
     }
     imprimirMatriz(matriz);
+  	prenderMatriz(matriz);
     eliminarMatriz(matriz);
     Serial.println("");
 
@@ -89,7 +100,7 @@ void patrones(int** matriz){
         //matriz[i][7-i]=1;
         *(*(matriz+(7-i))+i)=1;
     }
-    imprimirMatriz(matriz);
+    prenderMatriz(matriz);
 
     limpiarMatriz(matriz);
 
@@ -125,4 +136,53 @@ void eliminarMatriz(int** matriz){
     }
     delete[] matriz;
     matriz = nullptr;
+}
+
+void verificarMatriz(int** matriz){
+  	int secuencias;
+  	int tiempo;
+  
+  	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
+  while (!Serial.available()){};
+  	tiempo=Serial.parseInt();
+  	Serial.println(tiempo);
+  
+  	Serial.print("ingrese numero de secuencias: ");      
+  while (!Serial.available()){};
+  	secuencias=Serial.parseInt();
+  	Serial.println(secuencias);
+  
+  for(int i=0;i <secuencias;i++){
+    
+  	digitalWrite(latchPin,LOW);
+  	shiftOut(data,clockPin,LSBFIRST,255);
+  	digitalWrite(latchPin,HIGH);
+    delay(tiempo*1000);
+    	  	
+	digitalWrite(latchPin,LOW);
+  	shiftOut(data,clockPin,LSBFIRST,0);
+  	digitalWrite(latchPin,HIGH);
+    delay(tiempo*1000);  	
+  }
+  	digitalWrite(latchPin,LOW);
+  	shiftOut(data,clockPin,LSBFIRST,0);
+  	digitalWrite(latchPin,HIGH);
+}
+
+void prenderMatriz(int** matriz){
+	for(int x=0;x<0;x++){
+      int b=7;
+      int bytex=pow(2,b-x);
+        for(int y=0; y<8;y++){
+        	int c=7;
+        	int bytey=pow(2,c-y);
+        if(*(*(matriz+y)+x)==1){
+        	digitalWrite(latchPin,LOW);
+  			shiftOut(data,clockPin,LSBFIRST,bytey);
+          	shiftOut(data,clockPin,LSBFIRST,(255-bytex));
+  			digitalWrite(latchPin,HIGH);
+        	}
+          delay(500);
+        }        
+    }
 }
