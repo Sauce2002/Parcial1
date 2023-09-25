@@ -53,10 +53,11 @@ void publik(){
 	delay(10);
 }
 void imagen(int** matriz){//matriz del usuario
+  	limpiarMatriz(matriz);//por si el usuario ingresa menos de 8 numeros
     Serial.println("ingrese un 1 para encendido y 0 para apagado");
   	Serial.println("ingrese las filas de la siguiente forma, ejemplo(10110110)");
     for(int i=0;i<8;i++){
-      	String a ="";
+      	String a ="00000000";
         Serial.print("ingrese la fila [");
         Serial.print(i+1);
       	Serial.print("]: ");
@@ -68,7 +69,7 @@ void imagen(int** matriz){//matriz del usuario
           Serial.print(a[j]);//si el usuario pone mas de 8 numeros
             int b = 0;		//se imprimiran y tomaran solo los primeros 8
           	b = a[j]-48;
-            *(*(matriz+j)+i) = b;
+            if(b>=0)*(*(matriz+j)+i) = b;
             //matrizUsuario[i][j]=b;
         }
       	Serial.println("");

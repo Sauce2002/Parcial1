@@ -43,15 +43,25 @@ void publik(){
 }
 
 void imagen(int** matriz){//matriz del usuario
+    limpiarMatriz(matriz);
     cout<<"ingrese un 1 para encendido y 0 para apagado"<<endl;
+    cout<<"ingrese las filas de la siguiente forma, ejemplo(10110110)"<<endl;
+
     for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            int a=0;
-            cout << "ingrese estado del led en la posici0on ["<<i+1<<"]["<<j+1<<"]: "<<endl;
-            cin >>a;
-            *(*(matriz+j)+i) =a;
-            //matrizUsuario[i][j]=a;
-        }
+        string a ="00000000";
+        cout<<"ingrese la fila [";
+        cout<<i+1;
+        cout<<"]: ";
+        cin >>a;
+
+    for(int j=0;j<8;j++){
+            cout<<a[j];//si el usuario pone mas de 8 numeros
+        int b = 0;		//se imprimiran y tomaran solo los primeros 8
+        b = a[j]-48;
+        if(b>=0)*(*(matriz+j)+i) = b;
+        //matrizUsuario[i][j]=b;
+    }
+    cout<<endl;
     }
     imprimirMatriz(matriz);
     eliminarMatriz(matriz);
