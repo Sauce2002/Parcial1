@@ -33,10 +33,9 @@ void publik(){
     for (int i = 0; i <8; i++) {
         pMatriz[i] = new int[8];
     }
-  // ponemos todas las posiciones de la funcion en 0
-  limpiarMatriz(pMatriz);
-  
-  
+ // ponemos todas las posiciones de la funcion en 0
+    limpiarMatriz(pMatriz);
+    
 //creamos el menu del usuario
     
     int opcion=0;
@@ -100,23 +99,29 @@ void imagen(int** matriz){//matriz del usuario
 }
 void patrones(int** matriz){
     
+  	int *tiempo = new int;
+  
+  	Serial.print("ingrese tiempo entre encendido y apagado(segundos): ");
+  	while (!Serial.available()){};
+  	*tiempo=Serial.parseInt();
+  	Serial.println(*tiempo);
+  
     limpiarMatriz(matriz);
 //    patron 2
-    for (int i = 0; i < 8; ++i) {
-        //matriz[i][i]=1;
-        *(*(matriz+i)+i)=1;
-        //matriz[i][7-i]=1;
-        *(*(matriz+(7-i))+i)=1;
+    for (int i = 0; i < 8; ++i) {        
+        *(*(matriz+i)+i)=1;//matriz[i][i]=1;        
+        *(*(matriz+(7-i))+i)=1;//matriz[i][7-i]=1;
     }
-    prenderMatriz(matriz);
+    encenderIntervalo(matriz, tiempo);
 	imprimirMatriz(matriz);
     limpiarMatriz(matriz);
-
+	delay(*tiempo*1000);
 //    patron 3
 
     
     eliminarMatriz(matriz);
-
+	delete tiempo;
+  	tiempo=nullptr;
 }
 void imprimirMatriz(int** matriz){
     for(int x=0;x<8;x++){
@@ -183,20 +188,42 @@ void verificarMatriz(int** matriz){
 }
 
 void prenderMatriz(int** matriz){
+  	int *b = new int;
+  	int *c = new int;
 	for(int x=0;x<8;x++){
-      int b=7;
-      int bytex=1<<(b-x);
+      	*b=7;
+      	int *bytex = new int;
+       *bytex=1<<(*b-x);
       //Serial.println(bytex);
         for(int y=0; y<8;y++){
-        	int c=7;
-        	int bytey=1<<(c-y);
+        	*c=7;
+          	int *bytey=new int;
+        	*bytey=1<<(*c-y);
         if(*(*(matriz+y)+x)==1){
         	digitalWrite(latchPin,LOW);
-  			shiftOut(data,clockPin,LSBFIRST,bytey);
-          	shiftOut(data,clockPin,LSBFIRST,(255-bytex));
+  			shiftOut(data,clockPin,LSBFIRST,*bytey);
+          	shiftOut(data,clockPin,LSBFIRST,(255-*bytex));
   			digitalWrite(latchPin,HIGH);
         	}
+          delete bytey;
+          bytey=nullptr;
           //delay(500);
-        }        
+        } 
+      delete bytex;
+      bytex=nullptr;
     }
+  	delete b;
+  	b=nullptr;
+  	delete c;
+  	c=nullptr;
+}
+void encenderIntervalo(int** matriz, int* tiempo){
+  unsigned long *tiempoInicio=new unsigned long; 
+  *tiempoInicio=millis();
+  while(millis()-*tiempoInicio<*tiempo*1000){
+  	prenderMatriz(matriz);
+  }
+  
+  delete tiempoInicio;
+  tiempoInicio=nullptr;   
 }
