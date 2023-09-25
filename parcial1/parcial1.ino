@@ -101,12 +101,12 @@ void patrones(int** matriz){
         *(*(matriz+(7-i))+i)=1;
     }
     prenderMatriz(matriz);
-
+	imprimirMatriz(matriz);
     limpiarMatriz(matriz);
 
 //    patron 3
 
-    imprimirMatriz(matriz);
+    
     eliminarMatriz(matriz);
 
 }
@@ -170,19 +170,20 @@ void verificarMatriz(int** matriz){
 }
 
 void prenderMatriz(int** matriz){
-	for(int x=0;x<0;x++){
+	for(int x=0;x<8;x++){
       int b=7;
-      int bytex=pow(2,b-x);
+      int bytex=1<<(b-x);
+      //Serial.println(bytex);
         for(int y=0; y<8;y++){
         	int c=7;
-        	int bytey=pow(2,c-y);
+        	int bytey=1<<(c-y);
         if(*(*(matriz+y)+x)==1){
         	digitalWrite(latchPin,LOW);
   			shiftOut(data,clockPin,LSBFIRST,bytey);
           	shiftOut(data,clockPin,LSBFIRST,(255-bytex));
   			digitalWrite(latchPin,HIGH);
         	}
-          delay(500);
+          //delay(500);
         }        
     }
 }
