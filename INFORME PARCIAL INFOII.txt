@@ -1,0 +1,84 @@
+﻿Proyecto de Matriz de LEDs
+Informe de planeación 
+Análisis del problema y consideraciones 
+para la alternativa de solución propuesta.
+
+
+Integrantes:
+Jose Daniel Marin Alvarez - C.C 1006320460
+Jesús Alberto Córdoba Delgado - C.C 1007743330 
+
+
+El presente informe tiene como objetivo detallar el desarrollo del proyecto y proporcionar una solución viable para la implementación de una matriz de LEDs. A continuación, se presentará un análisis del problema, consideraciones para la solución propuesta, así como un paso a paso que debe seguirse para la implementación del proyecto.
+
+
+Para abordar este problema, se propone desarrollar una solución utilizando el lenguaje de programación C++ y la plataforma TINKERCAD. Se utilizará el uso de punteros, arreglos y memoria dinámica para implementar la solución de manera eficiente y efectiva.
+ 
+Pasos a seguir:
+1. Análisis del problema y definición de requisitos: Comprender el problema planteado y determinar los requisitos específicos del proyecto, como la cantidad de LEDs, los mensajes y patrones a mostrar, y las restricciones de uso de pines digitales del Arduino.
+2. Desarrollo de algoritmos: Diseñar los algoritmos necesarios para realizar las diferentes funciones solicitadas en el proyecto, como la verificación de funcionamiento de los LEDs, la visualización de patrones y la generación de secuencias.
+3. Operación de matrices: Familiarízarce con el concepto de matrices y cómo se pueden utilizar para representar la estructura de la matriz de LED. Esto implica comprender cómo acceder y manipular los elementos de la matriz.
+4. Creación de funciones solicitadas: Implementar las funciones requeridas en el proyecto, como la función de verificación de funcionamiento de los LED, la función de visualización de patrones y la función de generación de secuencias. Estas funciones deben ser desarrolladas en lenguaje C++ y deben utilizar punteros, arreglos y memoria dinámica según los requisitos establecidos.
+5. Propiedades y funcionamiento del integrado 74HC595: Investigar y comprender las propiedades y el funcionamiento del integrado 74HC595. Este integrado se utiliza para expandir la cantidad de pines digitales disponibles en el Arduino y puede ser útil para optimizar el uso de los pines en la implementación de la matriz de LEDs.
+6. Valoración de la implementación del integrado 74HC595: Evaluar la viabilidad y conveniencia de utilizar el integrado 74HC595 en la implementación del proyecto. Considerar aspectos como la optimización del uso de pines, la complejidad de la programación y la eficiencia en el control de los LEDs.
+7. Implementación de algoritmos de la matriz de LEDs en Arduino: Utilizando el lenguaje de programación C++ y la plataforma TINKERCAD, se procede a implementar los algoritmos desarrollados para controlar los LEDs de acuerdo con los mensajes y patrones definidos. Esto implica utilizar las funciones y estructuras de control adecuadas para encender y apagar los LEDs de la matriz según sea necesario.
+
+
+8. Pruebas y ajustes: Una vez implementados los algoritmos, se realizan pruebas para verificar el correcto funcionamiento del sistema. Se verifica que los mensajes y patrones se muestren correctamente en la matriz de LEDs y se ajustan los tiempos de encendido y apagado, así como los retardos entre visualizaciones, según sea necesario. Se realizan pruebas exhaustivas para asegurar que el sistema cumpla con los requisitos establecidos.
+
+
+Esquema:
+
+
+Durante el desarrollo de los algoritmos, fueron definidas las siguientes tareas.
+* Leer los datos ingresados por el usuario a través del puerto serial del Arduino.
+* Validar los datos ingresados para asegurarse de que sean correctos.
+* Implementar la lógica para encender y apagar los LEDs según los patrones y tiempos indicados.
+* Configurar los pines del Arduino para la comunicación con los Shift Register del integrado 74HC595 y los LEDs.
+* Establecer la comunicación con el puerto Serial para recibir los datos ingresados por el usuario.
+* Desarrollar algoritmos para verificar el funcionamiento de los LEDs, para mostrar imagen de prueba y para mostrar patrones alternados.
+
+
+Algoritmos implementados:
+
+
+* Algoritmo para leer los datos ingresados por el puerto Serial. Este algoritmo se encarga de verificar si hay datos disponibles y leer los datos ingresados por el usuario. Esto es fundamental para obtener la información necesaria para el funcionamiento del sistema.
+* Algoritmo para validar los datos ingresados. En este algoritmo se realiza la validación de los datos ingresados. Se verifica que sean numéricos y estén dentro de un rango válido. Es importante para garantizar que los datos sean correctos y no afecten el funcionamiento del sistema.
+* Algoritmo para encender y apagar los LEDs según los patrones y tiempos indicados. Este algoritmo controla el encendido y apagado de los LEDs según los patrones y tiempos indicados. Utiliza bucles y condicionales para lograr el efecto deseado en la visualización de los LEDs.
+* Algoritmo para configurar los pines del Arduino para la comunicación con los shift registers y los LEDs. En este algoritmo se asignan los pines del arduino que se utilizan para establecer la conexión y controlar los shift registers y los LEDs. Se utiliza la función pinMode() para configurar los pines como salidas. 
+* Algoritmo para establecer la comunicación con el puerto serial para recibir los datos ingresados. Este algoritmo inicia la comunicación con el puerto utilizando la función serial.begin().
+* Algoritmo para mostrar el funcionamiento de los LEDs. Este algoritmo verifica el funcionamiento de los LEDs, encendiéndose y apagándose según el tiempo y la cantidad de secuencias indicadas. Es importante para comprobar que los LEDs estén funcionando correctamente.
+* Algoritmo para mostrar una imagen de prueba. Leer una imagen ingresada por el usuario, encender y apagar los LEDs según el tiempo indicado para simular la imagen en la matriz de LEDs.
+* Algoritmo para mostrar patrones alternados. Mostrar de forma alternada los patrones del 1 al 4. Indicar el tiempo de retardo entre visualizaciones de los patrones. 
+
+
+Problemas de desarrollo afrontados:
+
+
+Durante el desarrollo del proyecto o parcial, se presentaron algunos desafíos que requirieron soluciones adicionales. Algunos de esos problemas fueron.
+* Problema de sincronización entre los LEDs y los patrones. En ciertos casos, se observó que los LEDs no se sincronizaban correctamente con los patrones y tiempos indicados. Esto se debía a la falta de una adecuada gestión del tiempo y la secuencia de encendido y apagado de los LEDs. Para resolverlo, se implementó un algoritmo de temporización preciso que aseguraba la correcta sincronización entre los LEDs y los patrones establecidos. 
+* Problema de compatibilidad entre el Arduino y el integrado 74HC595. Durante la implementación del algoritmo para utilizar el integrado, se encontró que había problemas de compatibilidad. Esto se debía a diferencias en la configuración de los pines y la comunicación entre ambos dispositivos. Para resolver este problema, se realizó la configuración adecuada de los pines y se ajustó la comunicación para lograr una integración exitosa.
+* Problema de diseño y estética. A medida que se avanzaba en el desarrollo del proyecto, surgió la necesidad de considerar aspectos de diseño y estética para lograr una apariencia atractiva y profesional del sistema. Esto implicó realizar ajustes en la disposición de los LEDs, la elección del color y la organización de las conexiones con los integrados usados para lograr un resultado visualmente agradable.
+* Problema de sobrecalentamiento de los LEDs. Durante las pruebas del funcionamiento de los LEDs, se observó que estos se calentaban en exceso, lo que causaba daños en el sistema. Para solucionar este problema, se implementó un mecanismo de control de corriente para limitar la cantidad de corriente que fluía a través de los LEDs. Esto se logró utilizando resistencias de valor adecuado en serie con cada LED para garantizar un funcionamiento seguro y evitar el sobrecalentamiento.
+
+
+Evolución de la solución y consideraciones a tener en cuenta en la implementación:
+
+
+La solución propuesta inicialmente fue diseñada para controlar una matriz de 8x8 utilizando el Arduino y el integrado 74HC595. A lo largo del desarrollo del proyecto, se realizaron varias iteraciones y mejoras en la solución para optimizar su funcionamiento y cumplir con los requisitos establecidos. Algunas consideraciones importantes durante la implementación fueron:
+* Optimización de códigos. Durante el desarrollo, se realizó una optimización del código para mejorar la eficiencia y reducir el consumo de recursos. Se utilizaron técnicas como el uso de punteros, arreglos y memoria dinámica para gestionar de manera eficiente los datos y las operaciones en el sistema. Esto permitió maximizar el rendimiento y la capacidad de respuesta del sistema.
+* Modularidad y reutilización de código. Se implementó el código de manera modular, dividiendo las tareas en funciones independientes y reutilizables. Esto facilitó la comprensión del código y permitió una fácil modificación y expansión en el futuro. Además, se utilizaron bibliotecas y funciones preexistentes cuando fue posible, lo que agilizó el desarrollo y garantizó la calidad del código.
+* Pruebas exhaustivas. Se realizaron pruebas detalladas en cada etapa del desarrollo para garantizar el correcto funcionamiento del sistema. Se verificó la sincronización de los LEDs con los patrones establecidos, y la compatibilidad entre el Arduino y el integrado 74HC595. Las pruebas permitieron identificar y solucionar problemas de manera oportuna.
+* Documentación y comentarios en el código. Se documentó adecuadamente el código fuente, incluyendo comentarios descriptivos y explicativos.
+* Consideraciones de seguridad. Se tomaron medidas para garantizar la seguridad durante la implementación del sistema. Se aseguró que todas las conexiones estuvieran correctamente aisladas para prevenir cortocircuitos y daños en los componentes.
+
+
+  
+
+                                             Diseño del circuito de matriz 8x8 con el uso de Arduino e integrados 74HC595.
+
+
+En conclusión, el proyecto parcial consistió en desarrollar un sistema para controlar una matriz de LEDs mostrando patrones, enfrentando desafíos de desarrollo y aplicando soluciones para garantizar el correcto funcionamiento del sistema.  
+
+
+Link del repositorio: https://github.com/Sauce2002/Parcial1.git
