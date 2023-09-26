@@ -118,7 +118,27 @@ void patrones(int** matriz){
   	*tiempo=Serial.parseInt();
   	Serial.println(*tiempo);
   	
+//    patron 1
+
+    for (int fila = 0; fila <8; fila++) {
+        for (int columna = 0; columna < 8; columna++) *(*(matriz+columna)+fila)=1;
+    }
+    int a=0;
+    for (int fila = 0; fila <8; fila++) {
+
+        a++;
+        for (int columna = 0; columna < 8; columna++) {
+        if(fila+columna<3)*(*(matriz+columna)+fila)=0;
+        else if(fila+columna>4+fila && fila+columna<10 && columna>3+a)*(*(matriz+columna)+fila)=0;
+        else if(fila+columna<10 && columna<3&& fila>4+columna) *(*(matriz+columna)+fila)=0;
+        else if(fila+columna<10 && fila>4+columna && fila+columna>4+fila)*(*(matriz+columna)+fila)=0;
+        }
+
+    }
+  	encenderIntervalo(matriz, tiempo);
+	imprimirMatriz(matriz);  
     limpiarMatriz(matriz);
+  	delay(*tiempo*1000);
 //    patron 2
     for (int i = 0; i < 8; ++i) {        
         *(*(matriz+i)+i)=1;//matriz[i][i]=1;        
@@ -129,7 +149,25 @@ void patrones(int** matriz){
     limpiarMatriz(matriz); 	
 	delay(*tiempo*1000);
 //    patron 3
-	
+//    patron 4
+
+    for (int fila = 0; fila < 4; fila++) {
+        int tope = 4+fila;
+        for (int columna = fila; columna < tope; columna++) {
+              *(*(matriz+columna)+fila)=1;//matriz[fila][columna]=1;
+            }
+    }
+    int tope =4;
+        for (int fila = 7; fila > 3; fila--) {
+            for (int columna =7-fila; columna < tope; columna++) {
+              *(*(matriz+columna)+fila)=1;//matriz[fila][columna]=1;
+            }
+        tope+=1;
+    }
+  	encenderIntervalo(matriz, tiempo);
+	imprimirMatriz(matriz);
+  	limpiarMatriz(matriz);
+  	delay(*tiempo*1000);
     
     eliminarMatriz(matriz);
 	delete tiempo;
@@ -219,7 +257,7 @@ void prenderMatriz(int** matriz){
         	}
           delete bytey;
           bytey=nullptr;
-          //delay(500);
+          //delay(1);
         } 
       delete bytex;
       bytex=nullptr;
