@@ -72,6 +72,10 @@ void imagen(int** matriz){//matriz del usuario
 void patrones(int** matriz){
     cout << matriz <<endl;
     limpiarMatriz(matriz);
+//    patron 1
+
+    imprimirMatriz(matriz);
+    limpiarMatriz(matriz);
 //    patron 2
     for (int i = 0; i < 8; ++i) {
         //matriz[i][i]=1;
@@ -84,7 +88,28 @@ void patrones(int** matriz){
     limpiarMatriz(matriz);
 
 //    patron 3
+    for (int columna = 0; columna < 8; columna++) {
+        for (int fila = 0; fila < 8; fila++) {
 
+        }
+    }
+
+
+//    patron 4
+
+    for (int fila = 0; fila < 4; fila++) {
+        int tope = 4+fila;
+        for (int columna = fila; columna < tope; columna++) {
+        *(*(matriz+columna)+fila)=1;//matriz[fila][columna]=1;
+        }
+    }
+    int tope =4;
+    for (int fila = 7; fila > 3; fila--) {
+        for (int columna =7-fila; columna < tope; columna++) {
+        *(*(matriz+columna)+fila)=1;//matriz[fila][columna]=1;
+        }
+        tope+=1;
+    }
 
     imprimirMatriz(matriz);
     eliminarMatriz(matriz);
