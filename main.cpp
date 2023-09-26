@@ -74,6 +74,30 @@ void patrones(int** matriz){
     limpiarMatriz(matriz);
 //    patron 1
 
+    for (int fila = 0; fila <8; fila++) {
+        for (int columna = 0; columna < 8; columna++) *(*(matriz+columna)+fila)=1;
+    }
+    int a=0;
+    for (int fila = 0; fila <8; fila++) {
+
+        a++;
+        for (int columna = 0; columna < 8; columna++) {
+        if(fila+columna<3)*(*(matriz+columna)+fila)=0;
+        else if(fila+columna>4+fila && fila+columna<10 && columna>3+a)*(*(matriz+columna)+fila)=0;
+        else if(fila+columna<10 && columna<3&& fila>4+columna) *(*(matriz+columna)+fila)=0;
+        else if(fila+columna<10 && fila>4+columna && fila+columna>4+fila)*(*(matriz+columna)+fila)=0;
+        }
+
+    }
+//    for (int fila = 4; fila < 8; fila++) {
+//        for (int columna = 0; columna < 8; columna++) {
+//            if (fila >= columna && fila < 8 - columna) {
+//                matriz[fila][columna] = 1;
+//            } else {
+//                matriz[fila][columna] = 0;
+//            }
+//        }
+//    }
     imprimirMatriz(matriz);
     limpiarMatriz(matriz);
 //    patron 2
@@ -83,18 +107,14 @@ void patrones(int** matriz){
         //matriz[i][7-i]=1;
         *(*(matriz+(7-i))+i)=1;
     }
-    imprimirMatriz(matriz);
+    //imprimirMatriz(matriz);
 
     limpiarMatriz(matriz);
 
 //    patron 3
-    for (int columna = 0; columna < 8; columna++) {
-        for (int fila = 0; fila < 8; fila++) {
 
-        }
-    }
-
-
+    //imprimirMatriz(matriz);
+    limpiarMatriz(matriz);
 //    patron 4
 
     for (int fila = 0; fila < 4; fila++) {
@@ -111,7 +131,7 @@ void patrones(int** matriz){
         tope+=1;
     }
 
-    imprimirMatriz(matriz);
+    //imprimirMatriz(matriz);
     eliminarMatriz(matriz);
 
 }
